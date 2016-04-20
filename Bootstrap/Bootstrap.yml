@@ -5,11 +5,11 @@
   vars:
     # SSH configuration 
     # (not so strict...)
-    # Because we need this bootstrap playbook to run as root.
+    # We need this bootstrap playbook to run as root.
     # After the reboot the root account will be blocked and an
     # administrator with sudo rights can administer the server.
     #
-    # If the disable root login is activated immediately the 
+    # If the 'disable root login' is activated immediately the 
     # playbook will fail because it locked itself out.
     BasicConfig_Sshd_passwordauthentication: "yes"
     BasicConfig_Sshd_permitrootlogin: "yes"
