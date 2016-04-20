@@ -1,9 +1,9 @@
-[production:children]
-prod
-dev
+[production]
+vps550.directvps.nl
+prod.solvchallenge.nl
+docker.solvchallenge.nl
+provision.solvchallenge.nl
 
-[prod]
-192.168.56.[1:254]
+[development]
+dev.solvchallenge.nl
 
-[dev]
-192.168.56.[1:254]
