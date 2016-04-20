@@ -1,0 +1,44 @@
+---
+- hosts: '{{ target }}'
+  remote_user: root
+
+  vars:
+    # SSH configuration 
+    # (not so strict...)
+    # Because we need this bootstrap playbook to run as root.
+    # After the reboot the root account will be blocked and an
+    # administrator with sudo rights can administer the server.
+    #
+    # If the disable root login is activated immediately the 
+    # playbook will fail because it locked itself out.
+    BasicConfig_Sshd_passwordauthentication: "yes"
+    BasicConfig_Sshd_permitrootlogin: "yes"
+    BasicConfig_Sshd_allowgroups: ""
+
+  roles:
+    # Default disable SELinux
+    - BasicConfig_Selinux
+    # Use Yum role to install EPEL repository
+    - BasicConfig_Yum
+    # Create users
+    - BasicConfig_Users
+    # Enable users as administrators
+    - BasicConfig_Sudo
+    # Configure ssh daemon for use with administrator users
+    - BasicConfig_Sshd
+
+  tasks:
+    - name: upgrade all packages
+      yum: name=* state=latest
+      notify: Reboot the server
+
+  # Sleep for 10 seconds before reboot to let playbook finish it's run.
+  # Let the task run (async) for 15 seconds to give reboot a change and 
+  # ignore the errors.
+  handlers: 
+    - name: Reboot the server
+      shell: "sleep 10; reboot"
+      async: 15
+      poll: 0
+      ignore_errors: true
+      

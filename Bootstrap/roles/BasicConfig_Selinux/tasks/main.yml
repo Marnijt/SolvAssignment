@@ -1,0 +1,15 @@
+---
+# tasks file for BasicConfig_Selinux
+- name: Install necessary phyton bindings
+  yum: name=libselinux-python state=installed
+
+- name: Adjust SeLinux configuration file
+  template: src=selinux_config.j2
+    dest=/etc/selinux/config
+    backup=yes
+    owner=0 group=0 mode=0655
+
+- name: Immediately make configuration effective
+  shell: setenforce {{ BasicConfig_Selinux_config_setenforce }}
+  register: command_result
+  failed_when: "'FAILED' in command_result.stderr"

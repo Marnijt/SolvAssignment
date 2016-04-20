@@ -1,0 +1,15 @@
+---
+# SSH daemon settings
+BasicConfig_Sshd_loglevel: "VERBOSE"
+BasicConfig_Sshd_addressfamily: "inet"
+BasicConfig_Sshd_listenaddress: ["0.0.0.0:22"]
+BasicConfig_Sshd_passwordauthentication: "no"
+BasicConfig_Sshd_challengeresponseauthentication: "no"
+BasicConfig_Sshd_x11forwarding: "no"
+BasicConfig_Sshd_permitrootlogin: "no"
+BasicConfig_Sshd_allowgroups: "sshkey4SolvChallenge"
+BasicConfig_Sshd_usedns: "no"
+BasicConfig_Sshd_subsystem: "sftp    /usr/libexec/openssh/sftp-server"
+
+# SSH Users to install (Technical staff)
+BasicConfig_Sshd_users_to_create: "{{ TechnicalSupport_users_to_create }}"

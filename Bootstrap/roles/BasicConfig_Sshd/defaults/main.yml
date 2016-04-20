@@ -1,0 +1,23 @@
+---
+
+# List with user name(s) and their public key
+# For example:
+# BasicConfig_Sshd_users_to_create:
+#   - name: testuser
+#     ssh_keys: 
+#       - "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwE8i5k9QUNTetNbzKDRF+XcfZ8tq/rLS9mM/SqrTHLffaNA1hVACyQvTp+xM9x0sKvIR3gKbqeZNvZ07oTSx9f9H7Ly9yLCo7bQpghYElkAKv1Ajj0nayKjZlm5CmWXbkeUArMAd6xNnbJvzO6IDMcGqdO0oU6CNoufPE/zVje0WrLO3P12I+8vxikOtFjvWC4tR3BDsFTGXCWxmFhEt1Vol1H2hvzOrFlnGbCol0JE2ah5BeL+zc1rfkg+Jt1dLHjPPK+01CZEAfib0EnC4Sxyig9xisKWpCzwHRQCMx38xNA182OjwKPKz1Ixb3gP3ATTdAjWMX0cUS3zioPGAYw== testuser@example.nl"
+
+BasicConfig_Sshd_users_to_create: []
+
+BasicConfig_Sshd_loglevel: "INFO"
+BasicConfig_Sshd_addressfamily: "any"
+#BasicConfig_Sshd_authorizedkeysfile_dir: "/etc/ssh/authorized_keys/"
+BasicConfig_Sshd_authorizedkeysfile_dir: ""
+BasicConfig_Sshd_listenaddress: ["0.0.0.0:22"]
+BasicConfig_Sshd_passwordauthentication: "yes"
+BasicConfig_Sshd_challengeresponseauthentication: "no"
+BasicConfig_Sshd_x11forwarding: "yes"
+BasicConfig_Sshd_permitrootlogin: "yes"
+BasicConfig_Sshd_allowgroups: ""
+BasicConfig_Sshd_usedns: "no"
+BasicConfig_Sshd_subsystem: "sftp    /usr/libexec/openssh/sftp-server"

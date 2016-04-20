@@ -1,0 +1,44 @@
+---
+
+# if directory set creates alternative ssh public key directory
+- name: create key directory
+  file: 
+    path="{{ BasicConfig_Sshd_authorizedkeysfile_dir }}" state=directory
+    owner=0 group=0 mode=0755
+  when: BasicConfig_Sshd_authorizedkeysfile_dir != ""
+
+# Install public keys under alternative directory
+# Set sshd_key_path to a directory i.e /etc/sshd/authorized_keys/ 
+- name: Install the public ssh keys for the users in alternative directory
+  authorized_key:
+    user: "{{ item.0.name }}"
+    key: "{{ item.1 }}"
+    manage_dir: no
+    path: "{{ BasicConfig_Sshd_authorizedkeysfile_dir }}/{{ item.0.name }}"
+  with_subelements:
+    - BasicConfig_Sshd_users_to_create
+    - ssh_keys
+  when: BasicConfig_Sshd_authorizedkeysfile_dir != "" and BasicConfig_Sshd_users_to_create is defined
+  tags: BasicConfig_Sshd_InstallUserPubKeys
+
+# (Default) Install public keys in users .ssh directory
+- name: Install the public ssh keys in .ssh user directory
+  authorized_key: 
+    user: "{{ item.0.name }}"
+    key: "{{ item.1 }}"
+  with_subelements:
+    - BasicConfig_Sshd_users_to_create
+    - ssh_keys
+  when: BasicConfig_Sshd_authorizedkeysfile_dir == "" and BasicConfig_Sshd_users_to_create is defined
+  tags: BasicConfig_Sshd_InstallUserPubKeys
+
+- name: sshd configuration file update
+  template: src=sshd_config.j2
+    dest=/etc/ssh/sshd_config
+    backup=yes
+    owner=0 group=0 mode=0644
+    validate='/usr/sbin/sshd -T -f %s'
+  notify:
+  - restart sshd
+  tags: "Update sshd configuration"
+

@@ -1,0 +1,8 @@
+---
+# defaults file for BasicConfig_Selinux
+   
+# enforcing, disabled, permssive
+BasicConfig_Selinux_config_selinux: disabled
+# Enforcing 1, Disabled/Permissive 0
+BasicConfig_Selinux_config_setenforce: 0
+
