@@ -14,10 +14,9 @@
     - BasicConfig_Sudo
     # Configure ssh daemon for use with administrator users
     - BasicConfig_Sshd
+    # Install cobbler service
+    - BasicConfig_Cobbler
     # Configure tftp service
     - BasicConfig_Tftp
     # Install rsync service
     - BasicConfig_Rsync
-    # Install cobbler service
-    - BasicConfig_Cobbler
-
