@@ -16,6 +16,17 @@
     group: root
     mode: "0644"
 
+- name: Template Cobbler DHCP configuration
+  template:
+    src: "{{ BasicConfig_Cobbler_dhcp_template }}"
+    dest: "/etc/cobbler/dhcp.template"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Syncronize services from templates
+  command: cobbler sync
+
 - name: Start services
   service: 
     name: "{{ item }}"
@@ -23,6 +34,7 @@
     enabled: yes
   with_items:
     - httpd
+    - dhcpd
     - cobblerd
 
 - name: Initialize cobbler bootloaders
@@ -44,14 +56,18 @@
 - name: Mount image for import
   command: mount -o loop /tmp/CentOS-6.7-x86_64-minimal.iso /mnt
 
+# TODO: sanatize check for errors
 - name: Import CentOS 6 image in cobbler
   command: cobbler import --path=/mnt/ --name=CentOS_6.7
+  ignore_errors: True
 
 - name: UNMount image 
   command: umount /mnt
 
+# TODO: sanatize check for errors
 - name: Add systems to cobbler for automatic installation
   command: "cobbler system add --name={{ item.name }} --profile={{ item.profile }} --mac=08:00:27:BC:43:E2 --ip-address={{ item.ipaddress }} --hostname={{ item.hostname }} --interface {{ item.interface }}"
   with_items:
     - "{{ BasicConfig_Cobbler_systems }}"
   when: BasicConfig_Cobbler_systems is defined
+  ignore_errors: True

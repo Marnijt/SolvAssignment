@@ -7,6 +7,7 @@ BasicConfig_Cobbler_default_password_crypted: $1$solvchal$ty1TnAfQILw3DgtWU1T32/
 BasicConfig_Cobbler_next_server: 192.168.56.101
 BasicConfig_Cobbler_server: 192.168.56.101
 BasicConfig_Cobbler_manage_dhcp: 1
+BasicConfig_Cobbler_dhcp_template: "files/cobbler-dhcp.provisioning"
 
 BasicConfig_Cobbler_user_digest: 
   - solvinity:Cobbler:5b1c0068876ad3e2527308f20be2aced
