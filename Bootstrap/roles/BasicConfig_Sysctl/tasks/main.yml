@@ -1,0 +1,13 @@
+---
+# tasks file for BasicConfig_Sysctl
+
+- name: Manage sysctl configuration
+  sysctl: 
+    ignoreerrors: "{{ item.ignoreerrors | default(omit) }}"
+    name: "{{ item.name }}"
+    reload: "{{ item.reload | default('yes') }}"
+    state: "{{ item.state | default('present') }}"
+    sysctl_file: "{{item.sysctl_file | default('/etc/sysctl.conf')}}"
+    sysctl_set: "{{ item.sysctl_set | default(omit) }}"
+    value: "{{ item.value | default(omit) }}"
+  with_items: BasicConfig_Sysctl_entries

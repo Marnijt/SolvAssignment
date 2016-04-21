@@ -1,0 +1,15 @@
+---
+# defaults file for BasicConfig_Sysctl
+
+# Example list of sysctl.conf entries
+# Entries used here will switch off IPv6
+# net.ipv6.conf.all.disable_ipv6 = 1
+# net.ipv6.conf.default.disable_ipv6 = 1
+# BasicConfig_Sysctl_entries:
+#  - name: net.ipv6.conf.all.disable_ipv6
+#    value: 1
+#  - name: net.ipv6.conf.default.disable_ipv6
+#    value: 1
+
+# List of sysctl entries
+BasicConfig_Sysctl_entries: []

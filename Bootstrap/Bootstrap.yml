@@ -18,6 +18,8 @@
   roles:
     # Default disable SELinux
     - BasicConfig_Selinux
+    # Update sysctl to disable ipv6
+    - BasicConfig_Sysctl
     # Use Yum role to install EPEL repository
     - BasicConfig_Yum
     # Create users
