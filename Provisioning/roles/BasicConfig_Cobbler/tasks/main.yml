@@ -35,3 +35,15 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Upload a CentOS 6 ISO image
+  copy:
+    src: iso/CentOS-6.7-x86_64-minimal.iso
+    dest: /tmp/CentOS-6.7-x86_64-minimal.iso
+
+- name: Mount image for import
+  command: mount -o loop /tmp/CentOS-6.7-x86_64-minimal.iso /mnt
+
+
+- name: Import CentOS 6 image in cobbler
+  command: cobbler import --path=/mnt/ --name=CentOS_6.7
