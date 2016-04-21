@@ -29,4 +29,9 @@
   command: cobbler get-loaders
 
 - name: Install cobbler-web user
-  
+  template:
+    src: "user.digest.j2"
+    dest: /etc/cobbler/users.digest
+    owner: root
+    group: root
+    mode: "0644"

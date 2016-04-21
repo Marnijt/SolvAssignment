@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% for user in BasicConfig_Cobbler_user_digest %}
+{{ user }}
+{% endfor %}
