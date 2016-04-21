@@ -4,6 +4,8 @@
   roles:
     # Default disable SELinux
     - BasicConfig_Selinux
+    # Install iptables firewall
+    - BasicConfig_Iptables
     # Update sysctl to disable ipv6
     - BasicConfig_Sysctl
     # Use Yum role to install EPEL repository
