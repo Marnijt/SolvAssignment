@@ -2,4 +2,4 @@
 # defaults file for BasicConfig_Rsync
 
 # Default enable rsync service
-BasicConfig_Rsync_disable: no
+BasicConfig_Rsync_disable: "no"
