@@ -1,0 +1,26 @@
+---
+
+- name: Ensure that iptables is installed
+  yum: name="iptables" state=installed
+
+- name: Template the /etc/sysconfig/iptables-config file to the server.
+  template:
+      src: "{{ BasicConfig_Iptables_iptables_config_template }}"
+      dest: "/etc/sysconfig/iptables-config"
+      owner: "root"
+      group: "root"
+      mode: "0644"
+      backup: "yes"
+  notify: restart iptables
+
+- name: Copy the /etc/sysconfig/iptables firewall configuration file to the server.
+  template:
+      src: "{{ BasicConfig_Iptables_iptables_file }}"
+      dest: "/etc/sysconfig/iptables"
+      owner: "root"
+      group: "root"
+      mode: "0600"
+      backup: "yes"
+  notify: restart iptables
+
+

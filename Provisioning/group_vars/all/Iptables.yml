@@ -1,0 +1,3 @@
+---
+# Path to the iptables (firewall rules) file. The path must be relative to the <role>/files directory or the <playbook> directory.
+BasicConfig_Iptables_iptables_file: "files/iptables.provisioning"
