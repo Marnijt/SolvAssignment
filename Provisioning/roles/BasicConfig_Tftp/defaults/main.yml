@@ -1,0 +1,5 @@
+---
+# defaults file for BasicConfig_Tftp
+
+# Default enable tftp service
+BasicConfig_Tftp_disable: no

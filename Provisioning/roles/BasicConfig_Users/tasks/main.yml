@@ -1,0 +1,73 @@
+---
+
+# Create all unix groups specified in the "groups to create" list
+- name: Install the groups
+  group:
+    gid: "{{ item.gid | default(omit) }}"
+    name: "{{ item.name }}"
+    state: present
+    system: "{{ item.system | default(omit) }}"
+  with_items: BasicConfig_Users_groups_to_create
+
+# Create unix groups for all users in the "users to create" group (if indicated by the BasicConfig_Users_create_user_group variable).
+- name: Per-user group creation
+  group: 
+    gid: "{{ item.uid | default(omit) }}"
+    name: "{{ item.name }}" 
+    state: present
+    system: no
+  with_items: BasicConfig_Users_users_to_create
+  when: BasicConfig_Users_create_user_group
+
+# If a custom home directory is specified for the users that need to be created then we need to make sure that the parent
+# directory in which that home directory will be created exists. So we create it if it doesn't exist yet.
+- name: Make sure the parent path of the home directories exist.
+  file: state=directory path={{ item.home | dirname }} mode=755 owner=root group=root
+  when: item.home is defined
+  with_items: BasicConfig_Users_users_to_create
+
+# Create all unix users specified in the "users to create" list
+- name: Install the users
+  user:
+    append: "{{ item.append | default('no') }}"
+    comment: "{{ item.comment | default(omit) }}"
+    createhome: "{{ item.createhome | default('yes') }}"
+    expires: "{{ item.expires | default(omit) }}"
+    force: "{{ item.force | default('no') }}"
+    generate_ssh_key: "{{ item.generate_ssh_key | default('no') }}"
+    group: "{{ item.group | default(omit) }}"
+    groups: "{{ ','.join(item.groups) if item.groups is defined else omit }}"
+    home: "{{ item.home | default(omit) }}"
+    login_class: "{{ item.login_class | default(omit) }}"
+    move_home: "{{ item.move_home | default('no') }}"
+    name: "{{ item.name }}"
+    non_unique: "{{ item.non_unique | default('no') }}"
+    password: "{{ item.password | default(omit) }}"
+    remove: "{{ item.remove | default('no') }}"
+    shell: "{{ item.shell | default(omit) }}"
+    skeleton: "{{ item.skeleton | default(omit) }}"
+    ssh_key_bits: "{{ item.ssh_key_bits | default('2048') }}"
+    ssh_key_comment: "{{ item.ssh_key_comment | default(omit) }}"
+    ssh_key_file: "{{ item.ssh_key_file | default('.ssh/id_rsa') }}"
+    ssh_key_passphrase: "{{ item.ssh_key_passphrase | default(omit) }}"
+    ssh_key_type: "{{ item.ssh_key_type | default('rsa') }}"
+    state: present
+    system: "{{ item.system | default('no') }}"
+    uid: "{{ item.uid | default(omit) }}"
+    update_password: "{{ item.update_password | default('always') }}"
+  with_items: BasicConfig_Users_users_to_create
+
+# Remove all unix users specified in the "users to create" list
+- name: Remove users from the system
+  user:
+    name: "{{ item.name }}"
+    state: absent
+    remove: yes
+  with_items: BasicConfig_Users_users_to_delete
+
+# Remove all unix groups specified in the "groups to create" list
+- name: Remove groups from the system
+  group:
+    name: "{{ item.name }}"
+    state: absent
+  with_items: BasicConfig_Users_groups_to_delete

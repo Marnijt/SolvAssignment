@@ -1,0 +1,17 @@
+---
+# defaults file for BasicConfig_Users
+
+# Will there be a group with the same name as the username?
+BasicConfig_Users_create_user_group: no
+
+# The groups to create
+BasicConfig_Users_groups_to_create: []
+
+# The ansible user is used for installation and administrative purposes
+BasicConfig_Users_users_to_create: []
+
+# List of users to delete
+BasicConfig_Users_users_to_delete: []
+
+# List of groups to delete
+BasicConfig_Users_groups_to_delete: []

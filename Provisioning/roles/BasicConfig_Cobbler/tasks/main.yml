@@ -1,0 +1,32 @@
+---
+# tasks file for BasicConfig_Cobbler
+
+- name: Installing Cobbler packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: 
+    - "{{ BasicConfig_Cobbler_packages }}"
+
+- name: Template Cobbler configuration
+  template:
+    src: "cobbler_settings.j2"
+    dest: "/etc/cobbler/settings"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Start services
+  service: 
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+  with_items:
+    - httpd
+    - cobblerd
+
+- name: Initialize cobbler bootloaders
+  command: cobbler get-loaders
+
+- name: Install cobbler-web user
+  

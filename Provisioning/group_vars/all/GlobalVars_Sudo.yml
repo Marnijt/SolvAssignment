@@ -1,0 +1,4 @@
+---
+
+BasicConfig_Sudo_sudo_users:
+  - name: '%administrators'

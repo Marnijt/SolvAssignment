@@ -1,0 +1,9 @@
+---
+BasicConfig_Yum_repos: []
+BasicConfig_Yum_repo_template: "repo_template.j2"
+BasicConfig_Yum_repo_template_dest: "/etc/yum.repos.d/CentOS-Base.repo"
+
+# Specify a template file for yum.conf to be placed on the server.
+BasicConfig_Yum_config_template_src: ""
+BasicConfig_Yum_config_template_dest: "/etc/yum.conf"
+

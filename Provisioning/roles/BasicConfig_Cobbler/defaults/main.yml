@@ -1,0 +1,17 @@
+---
+# defaults file for BasicConfig_Cobbler
+
+# package list
+BasicConfig_Cobbler_packages: 
+  - cobbler 
+  - cobbler-web 
+  - pykickstart 
+  - system-config-kickstart
+  - dhcp 
+  - mod_python 
+  - wget 
+
+BasicConfig_Cobbler_default_password_crypted: $1$solvchal$ty1TnAfQILw3DgtWU1T32/
+BasicConfig_Cobbler_next_server: 192.168.56.101
+BasicConfig_Cobbler_server: 192.168.56.101
+BasicConfig_Cobbler_manage_dhcp: 1

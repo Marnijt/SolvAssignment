@@ -1,0 +1,21 @@
+---
+# tasks file for BasicConfig_Tftp
+
+- name: Installing Tftp packages
+  yum:
+    name: "tftp"
+    state: installed
+
+- name: Template Tftp configuration
+  template:
+    src: "tftp.j2"
+    dest: "/etc/xinetd.d/tftp"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Start service
+  service: 
+    name: xinetd
+    state: restarted
+    enabled: yes
