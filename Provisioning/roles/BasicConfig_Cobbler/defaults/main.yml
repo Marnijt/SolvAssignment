@@ -11,11 +11,12 @@ BasicConfig_Cobbler_packages:
   - mod_python 
   - wget 
 
-BasicConfig_Cobbler_default_password_crypted: $1$solvchal$ty1TnAfQILw3DgtWU1T32/
-BasicConfig_Cobbler_next_server: 192.168.56.101
-BasicConfig_Cobbler_server: 192.168.56.101
-BasicConfig_Cobbler_manage_dhcp: 1
+BasicConfig_Cobbler_default_password_crypted: $1$sohlvcaTnAfQl$ty1ILw3DgtWU1T32/
+BasicConfig_Cobbler_next_server: 127.0.0.1
+BasicConfig_Cobbler_server: 127.0.0.1
+BasicConfig_Cobbler_manage_dhcp: 0
 
 BasicConfig_Cobbler_user_digest: 
-  #- cobbler:Cobbler:a2d6bae81669d707b72c0bd9806e01f3
-  - solvinity:Cobbler:5b1c0068876ad3e2527308f20be2aced
+  - cobbler:Cobbler:a2d6bae81669d707b72c0bd9806e01f3
+
+BasicConfig_Cobbler_systems: []

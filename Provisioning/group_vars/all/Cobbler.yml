@@ -1,0 +1,20 @@
+---
+
+# Overwrite default variables used by the cobbler role to 
+# reflect the current environment
+
+BasicConfig_Cobbler_default_password_crypted: $1$solvchal$ty1TnAfQILw3DgtWU1T32/
+BasicConfig_Cobbler_next_server: 192.168.56.101
+BasicConfig_Cobbler_server: 192.168.56.101
+BasicConfig_Cobbler_manage_dhcp: 1
+
+BasicConfig_Cobbler_user_digest: 
+  - solvinity:Cobbler:5b1c0068876ad3e2527308f20be2aced
+
+BasicConfig_Cobbler_systems: 
+  - name: docker.solvchallenge.nl
+    profile: CentOS_6.7-x86_64
+    mac: 08:00:27:BC:43:E2
+    ipaddress: 192.168.56.102
+    hostname: docker.solvchallenge.nl
+    interface: eth1
