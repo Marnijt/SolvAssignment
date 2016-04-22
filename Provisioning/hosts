@@ -1,7 +1,4 @@
 [production]
-vps550.directvps.nl
-prod.solvchallenge.nl
-docker.solvchallenge.nl
 provision.solvchallenge.nl
 
 [development]
