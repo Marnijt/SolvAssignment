@@ -1,0 +1,16 @@
+---
+# tasks file for BasicConfig_Sudo
+
+- name: Installing package
+  action: "{{ ansible_pkg_mgr }} pkg={{ BasicConfig_Sudo_sudo_package }} state=present"
+  tags: install_sudo
+
+- name: Creating sudoers configuration under /etc/sudoers.d
+  template:
+    src: "ansible.j2"
+    dest: "/etc/sudoers.d/ansible"
+    validate: "visudo -cf %s"
+    owner: root
+    group: root
+    mode: "0440"
+  tags: configure_sudo

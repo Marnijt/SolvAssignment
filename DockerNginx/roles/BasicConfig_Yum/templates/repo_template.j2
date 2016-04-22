@@ -1,0 +1,36 @@
+# {{ ansible_managed }}
+
+{% for yum_repo in BasicConfig_Yum_repos %}
+{% if yum_repo.comment is defined %}
+# {{ yum_repo.comment }}
+{% endif %}
+[{{ yum_repo.id }}]
+{% if yum_repo.name is defined %}
+name={{ yum_repo.name }}
+{% endif %}
+{% if yum_repo.mirrorlist is defined %}
+mirrorlist={{ yum_repo.mirrorlist }}
+{% endif %}
+{% if yum_repo.baseurl is defined %}
+baseurl={{ yum_repo.baseurl }}
+{% endif %}
+{% if yum_repo.gpgcheck is defined %}
+gpgcheck={{ yum_repo.gpgcheck }}
+{% endif %}
+{% if yum_repo.gpgkey is defined %}
+gpgkey={{ yum_repo.gpgkey }}
+{% endif %}
+{% if yum_repo.enabled is defined %}
+enabled={{ yum_repo.enabled }}
+{% endif %}
+{% if yum_repo.exclude is defined %}
+exclude={{ yum_repo.exclude }}
+{% endif %}
+{% if yum_repo.includepkgs is defined %}
+includepkgs={{ yum_repo.includepkgs }}
+{% endif %}
+{% if yum_repo.proxy is defined %}
+proxy={{ yum_repo.proxy }}
+{% endif %}
+
+{% endfor %}

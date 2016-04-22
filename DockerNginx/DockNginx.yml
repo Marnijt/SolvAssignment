@@ -1,0 +1,19 @@
+---
+- hosts: '{{ target }}'
+
+  roles:
+    # Default disable SELinux
+    - BasicConfig_Selinux
+    # Install iptables firewall
+    - BasicConfig_Iptables
+    # Update sysctl to disable ipv6
+    - BasicConfig_Sysctl
+    # Use Yum role to install EPEL repository
+    - BasicConfig_Yum
+    # Create users
+    - BasicConfig_Users
+    # Enable users as administrators
+    - BasicConfig_Sudo
+    # Configure ssh daemon for use with administrator users
+    - BasicConfig_Sshd
+

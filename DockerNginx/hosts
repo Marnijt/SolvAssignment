@@ -1,0 +1,7 @@
+[production]
+vps550.directvps.nl
+docker.solvchallenge.nl
+
+[development]
+dev.solvchallenge.nl
+

@@ -1,0 +1,14 @@
+---
+# Path to the template file for the iptables-config. The path must be relative to the <role>/template directory or the <playbook> directory.
+BasicConfig_Iptables_iptables_config_template: "iptables-config.default.j2"
+
+# Path to the iptables (firewall rules) file. The path must be relative to the <role>/files directory or the <playbook> directory.
+BasicConfig_Iptables_iptables_file: "iptables.default"
+
+# Variables used within the iptables-config template.
+BasicConfig_Iptables_save_on_stop: "no"
+BasicConfig_Iptables_save_on_restart: "no"
+BasicConfig_Iptables_save_counter: "no"
+BasicConfig_Iptables_status_numeric: "yes"
+BasicConfig_Iptables_status_verbose: "no"
+BasicConfig_Iptables_status_linenumbers: "yes"

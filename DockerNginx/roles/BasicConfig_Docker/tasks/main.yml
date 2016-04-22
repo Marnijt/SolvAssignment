@@ -1,0 +1,13 @@
+---
+# tasks file for BasicConfig_Docker
+
+- name: Installing Docker packages
+  yum:
+    name: "docker-io"
+    state: installed
+
+- name: Start docker daemon service
+  service: 
+    name: docker
+    state: started
+    enabled: yes
