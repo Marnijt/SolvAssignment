@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+DEVICE=eth1
+TYPE=Ethernet
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=dhcp

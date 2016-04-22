@@ -16,6 +16,9 @@
     BasicConfig_Sshd_allowgroups: ""
 
   roles:
+    # Configure network interfaces for some of the hosts
+    # See host_vars/ directory for the host specific definitions
+    - BasicConfig_Networking
     # Default disable SELinux
     - BasicConfig_Selinux
     # Update sysctl to disable ipv6

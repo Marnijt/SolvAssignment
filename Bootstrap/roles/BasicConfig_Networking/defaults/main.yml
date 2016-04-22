@@ -1,0 +1,26 @@
+---
+# defaults file for BasicConfig_Networking
+
+# A list of Ethernet network interface configuration files to add to the system
+BasicConfig_Networking_ifcfg_config_to_add: []
+
+# Optional parameters:
+# src: - Default source is ${PLAYBOOKBASEDIR}/files/{{ item.name }}
+# dest: - Default destination is /etc/sysconfig/network-scripts/{{ item.name }}
+# For example:
+# BasicConfig_Networking_ifcfg_config_to_add:
+#   - name: ifcfg-dummyinterface200
+#     src: files/BasicConfig_Networking/ifcfg-dummyinterface200
+#   - name: ifcfg-dummyinterface300
+
+ 
+# A list of Ethernet network interface configuration files to remove from the system
+BasicConfig_Networking_ifcfg_config_to_delete: []
+
+# Optional parameters:
+# path: - Default path is /etc/sysconfig/network-scripts/{{ item.name }} 
+
+# For example
+# BasicConfig_Networking_ifcfg_config_to_delete:
+# - name ifcfg-dummyinterface200
+# - name ifcfg-dummyinterface300

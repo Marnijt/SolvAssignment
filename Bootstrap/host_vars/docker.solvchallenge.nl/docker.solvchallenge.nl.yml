@@ -1,0 +1,4 @@
+---
+BasicConfig_Networking_ifcfg_config_to_add:
+  - name: ifcfg-eth1
+    src: files/ifcfg-eth1

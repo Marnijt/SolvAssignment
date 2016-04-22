@@ -1,0 +1,24 @@
+---
+# tasks file for BasicConfig_Networking
+
+- name: Copy network configuration files to the server
+  template: 
+    src: "{{ item.src | default(['files/', item.name] | join) }}" 
+    dest: "{{ item.dest | default(['/etc/sysconfig/network-scripts/', item.name] | join) }}"
+  when: item.name is defined
+  with_items: BasicConfig_Networking_ifcfg_config_to_add
+  notify: Restart Network
+
+- name: Remove network configuration files from the server
+  file: 
+    path: "{{ item.path | default(['/etc/sysconfig/network-scripts/', item.name] | join) }}"
+    state: absent
+  when: item.name is defined
+  with_items: BasicConfig_Networking_ifcfg_config_to_delete
+  notify: Restart Network
+
+- name: restart network
+  service:
+    name: network 
+    enabled: yes 
+    state: restarted
