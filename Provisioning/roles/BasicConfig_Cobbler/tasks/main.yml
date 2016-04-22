@@ -48,6 +48,11 @@
     group: root
     mode: "0644"
 
+- name: Copy kickstart file to server
+  copy:
+    src: files/kickstart.ks
+    dest: /var/lib/cobbler/kickstarts/solvchallenge.ks
+
 - name: Upload a CentOS 6 ISO image
   copy:
     src: iso/CentOS-6.7-x86_64-minimal.iso
@@ -66,8 +71,11 @@
 
 # TODO: sanatize check for errors
 - name: Add systems to cobbler for automatic installation
-  command: "cobbler system add --name={{ item.name }} --profile={{ item.profile }} --mac=08:00:27:BC:43:E2 --ip-address={{ item.ipaddress }} --hostname={{ item.hostname }} --interface {{ item.interface }}"
+  command: "cobbler system add --name={{ item.name }} --profile={{ item.profile }} --mac=08:00:27:BC:43:E2 --ip-address={{ item.ipaddress }} --hostname={{ item.hostname }} --interface {{ item.interface }} --kickstart=/var/lib/cobbler/kickstarts/solvchallenge.ks"
   with_items:
     - "{{ BasicConfig_Cobbler_systems }}"
   when: BasicConfig_Cobbler_systems is defined
   ignore_errors: True
+
+- name: Syncronize services from templates
+  command: cobbler sync
