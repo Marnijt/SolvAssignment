@@ -19,3 +19,33 @@
     # Install Docker
     - BasicConfig_Docker
 
+  tasks:
+    - name: Copy Dockerfile to server
+      unarchive:
+        copy: yes 
+        src: files/DockerConf.tar.bz2 
+        dest: /tmp/
+
+    # - name: Create html content 
+    #   command: cd /tmp && docker build -t some-content-nginx .
+
+    - name: build the image
+      docker_image: 
+        name: nginx
+        tag: ex1
+        path: /tmp/docknginx
+        state: present
+
+    # - name: Install and run Nginx container
+    #   command: docker run --name some-nginx -d -p 192.168.56.102:80:80 some-content-nginx
+
+    - name: Install and run Nginx container
+      docker:
+        name: SolvChallenge
+        image: nginx
+        pull: missing
+        ports: 80:80
+        expose:
+          - 80
+        state: started
+    
