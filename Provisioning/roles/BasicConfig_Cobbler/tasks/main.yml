@@ -34,7 +34,6 @@
     enabled: yes
   with_items:
     - httpd
-    - dhcpd
     - cobblerd
 
 - name: Initialize cobbler bootloaders
