@@ -16,10 +16,22 @@ Setup
 
 Needed software:
 
-- Virtualbox 5.0.18
-- ansible 1.9.4
-- A clone of this git repository
+- Virtualbox 5.0.18 [Download link](https://www.virtualbox.org/wiki/Downloads)
+- CentOS 6 minimal [Download link](http://ftp.nluug.nl/ftp/pub/os/Linux/distr/CentOS/6.7/isos/x86_64/)
+- ansible 1.9.4 [Download link and installation instructions](http://docs.ansible.com/ansible/intro_installation.html)
+- A clone of this git repository `git clone https://github.com/Marnijt/SolvAssignment.git`
 
+To run the playbooks you can create a virtual machine (for example in virtualbox) with the following specs:
+
+- min 1024 memory
+- 8 GB disk
+- 1 nic bridged adapter
+- 1 nic host only adapter
+- CentOS 6 minimal installed
+
+Edit your `/etc/hosts` file to add the following domains:
+192.168.56.102   docker.solvchallenge.nl
+192.168.56.101   provision.solvchallenge.nl
 
 Run Playbooks
 ------------
