@@ -7,7 +7,7 @@ To setup a virtualmachine with docker and a container with nginx first run the b
 
 After a virtual machine is setup with the basic configuration the docker/nginx playbook can be executed. A working example can be found at [http://vps550.directvps.nl](http://vps550.directvps.nl)
 
-The reason for this two phased approach is, to run a playbook on a server ansible needs an user with sudo rights to execute the various tasks. Everything could just be executed as root but for the sake of security the root account over ssh is disabled.
+The reason for this two phased approach is, to run a playbook on a server ansible needs a user with sudo rights to execute the various tasks. Everything could just be executed as root but for the sake of security the root account over ssh is disabled.
 
 Just for fun i've added a third playbook. With this playbook a Provisioning server with cobbler will be setup that automaticaly provisions a server with CentOS 6 after a PXE boot. Ideally this playbook will be enhanced with more functionality (i.e a jenkins server) to automate the installation even furter.
 
